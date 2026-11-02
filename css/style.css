@@ -22,6 +22,8 @@ body { font-size: 1.0625rem; line-height: 1.7; }
 [data-slot] > img { filter: none; }
 
 h1, h2, h3 { color: var(--color-ink); line-height: 1.2; }
+/* a Chinese phrase that should not split across lines */
+.ph { display: inline-block; }
 h2 { max-width: 16em; margin-bottom: var(--space-xl); font-size: clamp(1.875rem, 1.6vw + 1.1rem, 2.75rem); }
 h3 { font-size: var(--text-lg); }
 b { font-weight: 700; }
@@ -194,28 +196,68 @@ p.sched-note { padding-left: 0; }
 .footer-legal { font-size: var(--text-sm); color: var(--footer-muted); padding-top: var(--space-lg); border-top: var(--rule-hair) solid var(--footer-rule); margin: 0; }
 .footer a:focus-visible { outline-color: var(--footer-ink); }
 
+/* ---------- phone quick contact: hidden on wide screens ---------- */
+.mobile-cta { display: none; }
+
+/* ---------- tablet: two across where it reads well ---------- */
+@media (max-width: 75rem) and (min-width: 60.01rem) {
+  .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 /* ---------- under 60rem everything stacks in reading order ---------- */
 @media (max-width: 60rem) {
-  .topbar-inner { flex-wrap: wrap; gap: var(--space-sm); padding-block: var(--space-sm); }
-  .topbar-links { display: none; }
-  .hero { padding-top: var(--space-xl); }
+  .topbar { position: sticky; top: 0; z-index: var(--z-sticky-nav); background: var(--color-paper); }
+  .topbar-inner { min-height: 60px; gap: var(--space-sm); }
+  main [id] { scroll-margin-top: 72px; }
+  .topbar-links, .pill--call { display: none; }
+  .wordmark img { height: 26px; }
+  .hero { padding-block: var(--space-xl) var(--space-lg); }
+  .opener-grid { row-gap: var(--space-xl); }
   .opener, .stage, .code-cells, .head-block, .split-table .facts-sheet { grid-column: 1 / -1; }
-  .stage { max-height: none; }
-  .code-cells, .contact-grid { grid-template-columns: minmax(0, 1fr); }
-  .code-cells > li + li { border-top: var(--rule-hair) solid var(--color-rule); }
+  .opener h1 { font-size: clamp(2.25rem, 7vw + 0.5rem, 3.25rem); }
+  .stage { justify-self: start; width: calc(100% - var(--space-sm)); margin: 0 var(--space-sm) var(--space-sm) 0; aspect-ratio: 1 / 1; max-height: 520px; }
+  .stage::before { inset: var(--space-sm) calc(-1 * var(--space-sm)) calc(-1 * var(--space-sm)) var(--space-sm); }
+  .stage img { object-position: 50% 12%; }
+  .code-cells { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-md); }
+  .code-cells > li:nth-child(n+3) { border-top: var(--rule-hair) solid var(--color-rule); }
   .cell { padding-block: var(--space-md); }
+  .cell::before { margin-bottom: var(--space-2xs); }
+  h2 { font-size: clamp(1.625rem, 4vw + 0.75rem, 2.25rem); margin-bottom: var(--space-lg); }
+  .statement { font-size: clamp(1.75rem, 5vw + 0.75rem, 2.5rem); }
+  .about-text { font-size: var(--text-md); margin-bottom: var(--space-xl); }
+  .index-row { row-gap: var(--space-2xs); }
   .index-name, .index-where, .index-what { grid-column: 1 / -1; }
-  .index-where { padding-top: var(--space-sm); }
-  .sched-year { grid-column: 1 / -1; margin-bottom: var(--space-sm); }
+  .index-where, .index-what { padding-left: calc(var(--space-md) + 1.25em); }
+  .index-where { padding-top: var(--space-xs); }
+  .sched-row { padding-block: var(--space-lg); row-gap: var(--space-xs); }
+  .sched-year { grid-column: 1 / -1; font-size: var(--text-xl); }
   .sched-role, .sched-note { grid-column: 1 / -1; }
-  .sched-note { margin-top: var(--space-md); }
-  .photo--wide { min-height: 0; }
+  .sched-note { margin-top: var(--space-sm); }
+  .photo--wide { min-height: 0; aspect-ratio: 4 / 3; }
+  .photo--wide > img { object-position: 55% 40%; }
   .facts th, .facts td { display: block; width: auto; }
   .facts th { padding-block: var(--space-md) 0; white-space: nowrap; border-bottom: 0; }
-  .facts td { padding-block: var(--space-2xs) var(--space-md); }
+  .facts td { padding-block: var(--space-2xs) var(--space-md); font-size: var(--text-md); }
+  .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-md); }
+  .footer-statement { font-size: clamp(1.75rem, 5vw + 0.75rem, 2.5rem); }
+
+  /* the two ways to reach him, always one thumb away */
+  .mobile-cta {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-sm);
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--z-sticky);
+    padding: var(--space-sm) var(--gutter) calc(var(--space-sm) + env(safe-area-inset-bottom));
+    background: var(--color-paper); border-top: var(--rule-hair) solid var(--color-rule);
+  }
+  .mobile-cta .pill { width: 100%; padding-inline: var(--space-md); }
+  body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 40rem) {
+  .contact-grid { grid-template-columns: minmax(0, 1fr); }
+  .actions .pill--primary { flex: 1 1 auto; }
 }
 
 @media print {
-  [data-lang-toggle], .skip { display: none !important; }
+  [data-lang-toggle], .skip, .mobile-cta { display: none !important; }
   body { background: var(--color-paper); }
 }

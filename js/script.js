@@ -9,7 +9,7 @@
     },
     en: {
       title: "Vans Tsai | Coding Educator & AI Course Instructor",
-      desc: "Vans Tsai, founder of Vans Coding. 10+ years as a software engineer (Largan, Titansoft, Acer), now teaching AI certification courses, high-school AI labs and Scratch for kids in Taiwan."
+      desc: "Vans Tsai, founder of Vans Coding. 10+ years in software development (Largan, Titansoft, Acer), now teaching AI certification courses, high-school AI labs and Scratch for kids in Taiwan."
     }
   };
 
