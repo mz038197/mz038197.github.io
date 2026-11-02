@@ -1,8 +1,8 @@
 /* fonts family */
 
 :root {
-    --body-font : "Work Sans", sans-serif;
-    --bs-btn-font-family : "Work Sans", sans-serif;
+    --body-font : "Work Sans", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    --bs-btn-font-family : "Work Sans", "Noto Sans TC", sans-serif;
 }
 
 /* fonts color */
@@ -246,4 +246,132 @@ a:hover {
     color: var(--bs-pagination-active-color);
     background-color: var(--bs-pagination-active-bg);
     border-color: var(--bs-pagination-active-border-color);
+}
+
+/*----------------------------------------------*/
+/* Vans Tsai CV customizations
+/*----------------------------------------------*/
+
+/* bilingual: <html lang> decides which copy shows */
+html[lang="en"] .zh,
+html:not([lang="en"]) .en {
+    display: none !important;
+}
+
+html { scroll-behavior: smooth; }
+body {
+    padding-top: 72px;
+    background: #fff;
+    overflow-x: hidden;
+}
+section[id] { scroll-margin-top: 80px; }
+#logo { max-height: 36px; width: auto; }
+.ls-2 { letter-spacing: 0.1rem; }
+.text-primary { color: var(--bs-primary) !important; }
+a { color: var(--bs-black); text-underline-offset: 3px; }
+a:hover { color: var(--bs-primary); }
+
+/* hero */
+.hero {
+    /* 取自原範本 banner 的黃橘色 */
+    background:
+        radial-gradient(circle at 78% 35%, rgba(255, 236, 190, 0.55), transparent 45%),
+        linear-gradient(120deg, #fac370 0%, #f6bc58 55%, #e7a043 100%);
+    color: var(--bs-black);
+}
+.hero-name { text-shadow: 0 2px 18px rgba(150, 80, 10, 0.18); }
+.hero-name {
+    font-size: clamp(3.2rem, 2rem + 6vw, 7rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+.hero-name small {
+    display: block;
+    font-size: 0.45em;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin-top: 0.35em;
+}
+.hero-lead { max-width: 36em; }
+.hero-photo {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 560px;
+    margin-bottom: -1px;
+}
+.stats { margin-left: 0; margin-right: 0; }
+.stat-num {
+    font-size: clamp(2rem, 1.4rem + 2vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* services */
+.service-card h3 { line-height: 1.35; }
+
+/* experience */
+.job h3 { margin-bottom: 0.75rem; }
+.job ul { padding-left: 1.1rem; }
+.job li { margin-bottom: 0.35rem; }
+.job li::marker { color: var(--bs-primary); }
+.cert-list li { margin-bottom: 0.9rem; line-height: 1.4; }
+
+/* skills */
+.skill-card { background: var(--bs-black); color: var(--bs-white); }
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tags span {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
+    font-size: 0.95rem;
+}
+
+/* contact */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #fff;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    color: var(--bs-black);
+    font-size: 1.15rem;
+    font-weight: 500;
+    word-break: break-word;
+    transition: background 0.15s, color 0.15s;
+}
+.contact-item small { color: var(--bs-gray); font-size: 0.8rem; font-weight: 400; }
+.contact-item svg { flex: none; color: var(--bs-primary); }
+.contact-item:hover { background: var(--bs-black); color: #fff; }
+.contact-item:hover small { color: var(--bs-info); }
+
+@media (max-width: 575.98px) {
+    .hero { padding-top: 2rem !important; }
+    .hero-photo { max-height: 380px; }
+}
+
+@media print {
+    .navbar, .lang-toggle, #contact .contact-item[download] { display: none !important; }
+    body { padding-top: 0; }
+}
+
+/* 下方色塊改用頁面主色系的淡色：頁首黃、範本珊瑚紅、圖示青綠 */
+:root {
+    --vans-cream: #FFF3DC;   /* 頁首黃 */
+    --vans-coral: #FDE8E4;   /* 範本主色 #F0756C */
+    --vans-mint:  #E3F1F1;   /* 圖示 #4BA1A7 */
+}
+main .bg-yellow { background-color: var(--vans-cream) !important; }
+main .bg-green  { background-color: var(--vans-mint) !important; }
+main .bg-teal   { background-color: var(--vans-coral) !important; }
+.service-card .postf { color: #555; }
+
+/* 聯絡區與頁首呼應 */
+#contact.bg-yellow {
+    background: linear-gradient(120deg, #fac370 0%, #f6bc58 55%, #e7a043 100%) !important;
 }

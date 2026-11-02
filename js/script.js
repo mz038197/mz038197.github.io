@@ -1,82 +1,46 @@
-(function($) {
+// 中英切換：<html lang> 決定顯示 .zh 或 .en（初始語言由 <head> 內的小段程式設定）
+(function () {
+  "use strict";
 
-    "use strict";
+  var META = {
+    zh: {
+      title: "蔡鈞涵 Vans Tsai｜程式教育老師・AI 課程講師",
+      desc: "蔡鈞涵 Vans Tsai，凡思超能力程式教育創辦人。10 年以上軟體工程經驗（大立光、鈦坦科技、宏碁），提供企業 AI 認證課程、高中 AI 實驗室課程與兒童 Scratch 程式教育。"
+    },
+    en: {
+      title: "Vans Tsai | Coding Educator & AI Course Instructor",
+      desc: "Vans Tsai, founder of Vans Coding. 10+ years as a software engineer (Largan, Titansoft, Acer), now teaching AI certification courses, high-school AI labs and Scratch for kids in Taiwan."
+    }
+  };
 
-    $(document).ready(function() {
-      
-      // masonoary //
-
-      initIsotope();
-
-      // lightbox
-
-      lightbox.option({
-        'resizeDuration': 200,
-        'wrapAround': true,
-        'fitImagesInViewport': true
-      })
-      
-      /* swiper */
-      
-
-      var testimonialSwiper = new Swiper(".testimonial-swiper", {
-        spaceBetween: 20,
-        pagination: {
-            el: ".testimonial-swiper-pagination",
-            clickable: true,
-          },
-        breakpoints: {
-          0: {
-            slidesPerView: 1,
-          },
-          800: {
-            slidesPerView: 3,
-          },
-          1400: {
-            slidesPerView: 3,
-          }
-        },
-      });
-
-    }); // End of a document ready
-
-  // init Isotope
-  var initIsotope = function() {
-    
-    $('.grid').each(function(){
-
-      // $('.grid').imagesLoaded( function() {
-        // images have loaded
-        var $buttonGroup = $( '.button-group' );
-        var $checked = $buttonGroup.find('.is-checked');
-        var filterValue = $checked.attr('data-filter');
-  
-        var $grid = $('.grid').isotope({
-          itemSelector: '.portfolio-item',
-          // layoutMode: 'fitRows',
-          filter: filterValue
-        });
-    
-        // bind filter button click
-        $('.button-group').on( 'click', 'a', function(e) {
-          e.preventDefault();
-          filterValue = $( this ).attr('data-filter');
-          $grid.isotope({ filter: filterValue });
-        });
-    
-        // change is-checked class on buttons
-        $('.button-group').each( function( i, buttonGroup ) {
-          $buttonGroup.on( 'click', 'a', function() {
-            $buttonGroup.find('.is-checked').removeClass('is-checked');
-            $( this ).addClass('is-checked');
-          });
-        });
-      // });
-
-    });
+  function current() {
+    return document.documentElement.getAttribute("lang") === "en" ? "en" : "zh";
   }
 
+  function apply(lang) {
+    document.documentElement.setAttribute("lang", lang === "en" ? "en" : "zh-Hant");
+    document.title = META[lang].title;
+    var d = document.querySelector('meta[name="description"]');
+    if (d) d.setAttribute("content", META[lang].desc);
+  }
 
+  document.addEventListener("DOMContentLoaded", function () {
+    apply(current());
 
+    var y = document.querySelector("[data-year]");
+    if (y) y.textContent = new Date().getFullYear();
 
-})(jQuery);
+    document.querySelectorAll("[data-lang-toggle]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var next = current() === "en" ? "zh" : "en";
+        apply(next);
+        try { localStorage.setItem("lang", next); } catch (e) { }
+        try {
+          var url = new URL(location.href);
+          url.searchParams.set("lang", next);
+          history.replaceState(null, "", url);
+        } catch (e) { }
+      });
+    });
+  });
+})();
