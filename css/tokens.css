@@ -16,9 +16,10 @@
   --brand-teal: oklch(65.8% 0.093 186); --brand-deep: oklch(38.7% 0.056 213); --brand-yellow: oklch(82.3% 0.165 92); --brand-lime: oklch(74.6% 0.163 117);
   --sun-hi: oklch(92% 0.1 96); --sun: oklch(85% 0.155 92); --sun-lo: oklch(80% 0.16 86); --lime-hi: oklch(86% 0.14 112);
   --shade-ink: oklch(21% 0.008 60 / 0.22); --footer: oklch(34% 0.05 213); --footer-rule: oklch(46% 0.045 210); --footer-muted: oklch(80% 0.03 200); --footer-ink: oklch(97% 0.01 90);
-  --color-card: oklch(94% 0.016 80); --dark-ink: oklch(97% 0.01 90); --dark-ink-2: oklch(90% 0.015 90); --dark-muted: oklch(78% 0.025 200); --dark-rule: oklch(46% 0.045 210); --mask-solid: oklch(0% 0.005 60); --brand-ink: oklch(27% 0.045 213);
+  --color-card: oklch(94% 0.016 80); --dark-ink: oklch(97% 0.01 90); --dark-ink-2: oklch(90% 0.015 90); --dark-muted: oklch(78% 0.025 200); --dark-rule: oklch(46% 0.045 210); --mask-solid: oklch(0% 0.005 60); --tape: oklch(88% 0.12 95 / 0.75); --lift: oklch(10% 0.02 213 / 0.35); --brand-ink: oklch(27% 0.045 213);
   --font-display: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --font-hand: "Huninn", "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
-  --radius-card: 12px; --radius-round: 999px; --radius-pill: 2px; --rule-hair: 1px;
+  --radius-card: 12px; --radius-round: 999px; --radius-pill: 999px; --rule-hair: 1px;
   --tracking-display: -0.01em; --display-weight: 600;
 }
