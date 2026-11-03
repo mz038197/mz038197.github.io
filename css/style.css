@@ -1,7 +1,7 @@
 /* Hallmark · shape: Split Studio, editorial (numbered courses, case, statement, tools, timeline on hairline rules) · genre: editorial · theme: custom, editorial by request (ivory paper, charcoal ink, Noto Serif TC heads) in the 凡思超能力 brand colours: deep teal, teal, yellow, lime · redesign: full
  * the user found the Bloom version cheap: cutout on an orange gradient, pastel shadow cards, the rubber dot; all three are gone
- * hero: Stage, the standing portrait as shot (4:5) · nav: edge-aligned · footer: statement · imagery: photographs, the user's own 2, natural colour · signature: the serif headline beside his own portrait, the four courses numbered 01 to 04 under it
- * job: hire · axes: light/serif-display/warm-neutral · posture: quiet, warmed by the brand yellow behind the portrait, the brand stripe on the course rule and across the contact band at the user's request · contrast: pass · fold: pass · v2.0.0 */
+ * hero: Stage on a deep-teal band, the standing portrait as shot (4:5), sized so the partner marquee shows on the first screen · nav: edge-aligned · footer: statement · imagery: photographs, the user's own 2, natural colour, and the partners' own logos · signature: the serif headline on deep teal beside his portrait, then the four courses as brand-coloured cards
+ * job: hire · axes: light/serif-display/warm-neutral · posture: quiet paper sections between two deep-teal bands (hero, experience), a brand bar over each head, each course card banded in one brand colour, the yellow contact band · chosen from prototype variants A to D (branch prototype/cv-variants): C · contrast: pass · fold: pass · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: S, a quiet editorial page could be any consultant; his real schools, numbers and the Space War photo carry the specifics */
 /* Hallmark · photo: natural, not the scaffold's warm filter · the user said filtered portraits look old-fashioned; his colour photos stay as shot */
 /* Hallmark · dropped https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js, https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js · the top bar has no off-canvas menu left for Bootstrap to drive */
@@ -35,15 +35,34 @@ a:hover { color: var(--color-ink); }
 a:active { color: var(--color-ink-2); }
 a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: var(--space-3xs); }
 
-.section { margin-block: var(--section-gap); }
-.section--s { margin-block: var(--section-gap-s); }
-.section--l { margin-block: var(--section-gap-l); }
+.section { padding-block: var(--section-gap-s); }
+.section--l { padding-block: var(--section-gap); }
+
+/* each section names one brand colour for the bar over its head */
+.tint--teal { --mark: var(--brand-teal); }
+.tint--yellow { --mark: var(--brand-yellow); }
+.tint--lime { --mark: var(--brand-lime); }
+
+/* a deep-teal band: text flips to cream, rules go faint */
+.hero, .dark {
+  --color-ink: var(--dark-ink); --color-ink-2: var(--dark-ink-2); --color-muted: var(--dark-muted);
+  --color-rule: var(--dark-rule); --color-accent: var(--brand-yellow); --color-focus: var(--brand-yellow);
+  background: var(--brand-deep); color: var(--color-ink);
+}
+.dark .sheet { border-top-color: var(--brand-yellow); }
+
+/* a short brand bar over each section head */
+main h2::before {
+  content: ""; display: block; width: 32px; height: 6px; margin-bottom: var(--space-md);
+  background: var(--mark, linear-gradient(90deg, var(--brand-teal), var(--brand-yellow), var(--brand-lime)));
+}
+.band h2::before { background: var(--brand-deep); }
 
 .skip { position: absolute; left: var(--space-md); top: calc(-1 * var(--space-3xl)); z-index: var(--z-toast); padding: var(--space-xs) var(--space-md); background: var(--color-ink); color: var(--color-paper); }
 .skip:focus-visible { top: var(--space-md); }
 
 /* a ruled block: a strong rule on top, hairlines inside, no box */
-.sheet { border-top: var(--rule-hair) solid var(--color-rule-strong); }
+.sheet { border-top: 2px solid var(--brand-deep); }
 
 /* ---------- controls: one solid primary, quiet secondaries ---------- */
 .pill {
@@ -78,52 +97,78 @@ a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: var(--s
 .pill--call { font-variant-numeric: tabular-nums; }
 
 /* ---------- hero: Stage ---------- */
-.hero { padding-block: var(--space-2xl) var(--space-xl); }
+.hero { padding-block: var(--space-xl); }
 .opener-grid {
   display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gap-columns); row-gap: var(--space-2xl); align-items: center;
 }
 .opener { grid-column: 1 / 7; display: grid; gap: var(--space-lg); }
-.opener h1 { max-width: none; font-size: clamp(2.5rem, 3.6vw + 1rem, 4.5rem); line-height: 1.18; letter-spacing: 0; }
+.opener h1 { max-width: none; font-size: clamp(2.25rem, 2.2vw + 1rem, 3.5rem); line-height: 1.18; letter-spacing: 0; }
 html[lang="en"] .opener h1 { max-width: 14ch; line-height: 1.08; }
 .opener .lead { color: var(--color-ink-2); max-width: 28em; }
 .opener .lead b { color: var(--color-ink); font-weight: 500; }
+.hero .pill--primary { background: var(--brand-yellow); border-color: var(--brand-yellow); color: var(--brand-deep); }
+.hero .pill--primary:hover { background: var(--sun-hi); border-color: var(--sun-hi); color: var(--brand-deep); }
+.hero .pill--quiet:hover { color: var(--brand-yellow); }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md); margin-top: var(--space-sm); }
 
-.stage { grid-column: 8 / 13; aspect-ratio: 4 / 5; max-height: 600px; justify-self: end; width: calc(100% - var(--space-lg)); position: relative; margin: 0 var(--space-lg) var(--space-lg) 0; }
-.stage::before { content: ""; position: absolute; inset: var(--space-lg) calc(-1 * var(--space-lg)) calc(-1 * var(--space-lg)) var(--space-lg); background: linear-gradient(135deg, var(--sun-hi) 0%, var(--sun) 45%, var(--brand-lime) 100%); }
+/* the portrait follows the window height so the partner marquee stays on the first screen */
+.stage { grid-column: 8 / 13; aspect-ratio: 4 / 5; height: clamp(300px, 100svh - 420px, 460px); justify-self: end; width: auto; position: relative; margin: 0 var(--space-lg) var(--space-lg) 0; }
+.stage::before { content: ""; position: absolute; inset: var(--space-lg) calc(-1 * var(--space-lg)) calc(-1 * var(--space-lg)) var(--space-lg); background: linear-gradient(135deg, var(--brand-teal), var(--brand-lime)); }
 .stage img { position: relative; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 20%; }
 
-/* the four courses, numbered on one strong rule */
-.code-cells {
-  grid-column: 1 / 13; list-style: none; margin: 0; padding: 0; counter-reset: course;
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--gap-columns);
-  border-top: 3px solid transparent; border-image: linear-gradient(90deg, var(--brand-teal), var(--brand-yellow) 50%, var(--brand-lime)) 1;
+/* ---------- partners: the real hosts as a slow right-to-left marquee ---------- */
+.partners { padding-block: var(--space-xl); border-bottom: var(--rule-hair) solid var(--color-rule); }
+.partners-head { margin: 0 0 var(--space-md); font-size: var(--text-sm); font-weight: 500; color: var(--color-muted); }
+/* two copies of the list; the track slides by one copy, then loops */
+.partner-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, var(--mask-solid) 6%, var(--mask-solid) 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, var(--mask-solid) 6%, var(--mask-solid) 94%, transparent);
 }
-.code-cells > li { display: grid; counter-increment: course; }
-.cell {
-  display: grid; align-content: start; gap: var(--space-2xs); padding-block: var(--space-lg) var(--space-sm);
-  color: var(--color-ink); text-decoration: none;
+.partner-track { display: flex; width: max-content; animation: partner-scroll 40s linear infinite; }
+.partner-marquee:hover .partner-track,
+.partner-marquee:focus-within .partner-track { animation-play-state: paused; }
+@keyframes partner-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.partner-list { list-style: none; margin: 0; padding: 0 var(--space-xl) 0 0; display: flex; gap: var(--space-xl); align-items: end; flex-shrink: 0; }
+.partner-list li { width: 112px; flex-shrink: 0; display: grid; justify-items: center; gap: var(--space-xs); text-align: center; }
+.partner-list img { height: 56px; width: auto; max-width: 100%; object-fit: contain; }
+.partner-name { font-size: var(--text-xs); color: var(--color-muted); line-height: 1.3; }
+@media (prefers-reduced-motion: reduce) {
+  .partner-track { animation: none; width: auto; }
+  .partner-marquee { -webkit-mask-image: none; mask-image: none; }
+  .partner-list { flex-wrap: wrap; padding-right: 0; }
+  .partner-list[aria-hidden="true"] { display: none; }
 }
-.cell::before { content: counter(course, decimal-leading-zero); font: 500 var(--text-md)/1 var(--font-display); color: var(--color-accent); margin-bottom: var(--space-sm); font-variant-numeric: tabular-nums; }
-.cell-title { font: 600 var(--text-lg)/1.3 var(--font-display); }
-.cell-line { color: var(--color-muted); font-size: var(--text-sm); }
-a.cell:hover { color: var(--color-ink); }
-a.cell:hover .cell-title { color: var(--color-accent); }
-a.cell:focus-visible { outline: 2px solid var(--color-focus); outline-offset: var(--space-2xs); }
 
-/* ---------- courses: a numbered index ---------- */
-.index { counter-reset: course; }
+/* ---------- courses: four numbered cards, each banded in one brand colour ---------- */
+#services { padding-block: var(--section-gap); }
+.index { counter-reset: course; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg); }
 .index-row {
-  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns);
-  align-items: baseline; padding-block: var(--space-lg); counter-increment: course;
-  border-bottom: var(--rule-hair) solid var(--color-rule);
+  --c: var(--brand-teal); --on-c: var(--brand-ink);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name age" "where where" "what what" "cta cta";
+  align-content: start; counter-increment: course;
+  background: var(--color-card); border-radius: var(--radius-card); overflow: hidden;
 }
+#course-labs { --c: var(--brand-deep); --on-c: var(--dark-ink); }
+#course-cert { --c: var(--brand-lime); --on-c: var(--brand-ink); }
+#course-scratch { --c: var(--brand-yellow); --on-c: var(--brand-ink); }
 .index p { margin: 0; }
-.index-name { grid-column: 1 / 5; font: 600 var(--text-title)/1.3 var(--font-display); display: flex; align-items: baseline; gap: var(--space-md); }
-.index-name::before { content: counter(course, decimal-leading-zero); font: 500 var(--text-md)/1 var(--font-display); color: var(--color-accent); font-variant-numeric: tabular-nums; }
-.index-where { grid-column: 5 / 8; font-weight: 500; }
-.index-what { grid-column: 8 / 13; color: var(--color-ink-2); max-width: 48ch; }
+.index-row > * { padding-inline: var(--space-xl); }
+.index-name {
+  grid-area: name; display: grid; gap: var(--space-xs); padding-block: var(--space-xl);
+  background: var(--c); color: var(--on-c); font: 600 var(--text-2xl)/1.2 var(--font-display);
+}
+.index-name::before { content: counter(course, decimal-leading-zero); font: 500 var(--text-lg)/1 var(--font-display); opacity: 0.8; font-variant-numeric: tabular-nums; }
+.index-age {
+  grid-area: age; display: grid; align-content: start; padding-block: var(--space-xl);
+  background: var(--c); color: var(--on-c); font-weight: 700; font-size: var(--text-sm); white-space: nowrap;
+}
+.index-age > span { padding: var(--space-2xs) var(--space-sm); border: 1.5px solid currentColor; border-radius: var(--radius-round); }
+.index-where { grid-area: where; padding-top: var(--space-lg); font-weight: 700; }
+.index-what { grid-area: what; padding-top: var(--space-xs); color: var(--color-ink-2); }
+.index-cta { grid-area: cta; justify-self: start; display: inline-flex; align-items: center; min-height: 44px; margin-block: var(--space-sm) var(--space-lg); font-weight: 700; white-space: nowrap; color: var(--brand-deep); }
+.index-cta:hover { color: var(--brand-teal); }
 
 /* ---------- case: head block beside a ruled table ---------- */
 .split-table {
@@ -174,7 +219,7 @@ p.sched-note { padding-left: 0; }
 .contact-lead { margin-bottom: var(--space-2xl); color: var(--color-ink); }
 .contact-grid {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--gap-columns);
-  border-top: var(--rule-hair) solid var(--color-rule-strong); margin-bottom: var(--space-xl);
+  border-top: 2px solid var(--brand-deep); margin-bottom: var(--space-xl);
 }
 .contact-cell {
   display: grid; gap: var(--space-2xs); padding-block: var(--space-lg); color: var(--color-ink); text-decoration: none;
@@ -211,24 +256,23 @@ p.sched-note { padding-left: 0; }
   main [id] { scroll-margin-top: 72px; }
   .topbar-links, .pill--call { display: none; }
   .wordmark img { height: 26px; }
-  .hero { padding-block: var(--space-xl) var(--space-lg); }
-  .opener-grid { row-gap: var(--space-xl); }
-  .opener, .stage, .code-cells, .head-block, .split-table .facts-sheet { grid-column: 1 / -1; }
-  .opener h1 { font-size: clamp(2.25rem, 7vw + 0.5rem, 3.25rem); }
-  .stage { justify-self: start; width: calc(100% - var(--space-sm)); margin: 0 var(--space-sm) var(--space-sm) 0; aspect-ratio: 1 / 1; max-height: 520px; }
+  .hero { padding-block: var(--space-lg); }
+  .opener-grid { row-gap: var(--space-lg); }
+  .opener, .stage, .head-block, .split-table .facts-sheet { grid-column: 1 / -1; }
+  .opener h1 { font-size: clamp(2rem, 5vw + 0.75rem, 2.75rem); }
+  .stage { justify-self: start; height: auto; width: min(60%, 240px); margin: 0 var(--space-sm) var(--space-sm) 0; aspect-ratio: 1 / 1; }
   .stage::before { inset: var(--space-sm) calc(-1 * var(--space-sm)) calc(-1 * var(--space-sm)) var(--space-sm); }
   .stage img { object-position: 50% 12%; }
-  .code-cells { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-md); }
-  .code-cells > li:nth-child(n+3) { border-top: var(--rule-hair) solid var(--color-rule); }
-  .cell { padding-block: var(--space-md); }
-  .cell::before { margin-bottom: var(--space-2xs); }
+  .partner-list { gap: var(--space-lg); padding-right: var(--space-lg); }
+  .partner-list li { width: 92px; }
+  .partner-track { animation-duration: 30s; }
   h2 { font-size: clamp(1.625rem, 4vw + 0.75rem, 2.25rem); margin-bottom: var(--space-lg); }
   .statement { font-size: clamp(1.75rem, 5vw + 0.75rem, 2.5rem); }
   .about-text { font-size: var(--text-md); margin-bottom: var(--space-xl); }
-  .index-row { row-gap: var(--space-2xs); }
-  .index-name, .index-where, .index-what { grid-column: 1 / -1; }
-  .index-where, .index-what { padding-left: calc(var(--space-md) + 1.25em); }
-  .index-where { padding-top: var(--space-xs); }
+  .index { grid-template-columns: minmax(0, 1fr); }
+  .index-row > * { padding-inline: var(--space-lg); }
+  .index-name { font-size: var(--text-xl); padding-block: var(--space-lg); }
+  .index-age { padding-block: var(--space-lg); }
   .sched-row { padding-block: var(--space-lg); row-gap: var(--space-xs); }
   .sched-year { grid-column: 1 / -1; font-size: var(--text-xl); }
   .sched-role, .sched-note { grid-column: 1 / -1; }
